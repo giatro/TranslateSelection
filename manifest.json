@@ -11,7 +11,6 @@
 		"128": "icons/ico128.png"
 	},
 	"options_page": "options.html",
-	"background_page": "background.html",
 	"browser_action": {
 		"default_icon": "icons/ico19.png",
 		"popup" : "popup.html"
