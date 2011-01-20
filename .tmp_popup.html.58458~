@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Translate selection</title>
+	<link rel="stylesheet" href="css/popup.css"/>
+	<link rel="stylesheet" href="css/chroxs.css"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/chroxs.js"></script>
+	<script src="js/popup.js"></script>
+</head>
+<body>
+<!--div id="viewport"-->
+	<div class="card" id="main">
+		<div id="xtitlebar" class="toolbar">
+			<img src="icons/ico16.png" alt=""/>
+			<span class="title">Translate selection</span>
+			<button class="ico notxt icon-x-close" id="btClose"></button>
+			<button class="ico notxt icon-cog" id="btSettings"></button>
+		</div>
+		<div id="extdescription"></div>
+		<form>
+			<div>
+				<label for="selFrom">from</label>
+				<select id="selFrom">
+					<option value="">Detect language</option>
+				</select>
+				<button id="btSwap" class="ico notxt icon-loop"></button>
+				<label for="selTo">to</label>:
+				<select id="selTo">
+					<option value="">Detect language</option>
+				</select>
+				<div class="textareawrapper">
+					<label for="from">Source text</label>
+					<textarea id="from"></textarea>
+				</div>
+				<div class="textareawrapper">
+					<label for="to">Translated text</label>
+					<textarea id="to"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="card" id="options">
+		<div id="xtitlebar" class="toolbar">
+			<img src="icons/ico16.png" alt=""/>
+			<span class="title">Translate selection: options</span>
+			<button class="ico notxt icon-x-close" id="btClose"></button>
+		</div>
+	</div>
+<!--/div-->
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+	"name" : {
+		"message" : "Translate selection"
+	},
+	"detectLanguage" : {
+		"message" : "Detect Language"
+	},
+	"fromLang" : {
+		"message" : "da"
+	},
+	"toLang" : {
+		"message" : "in"
+	},
+	"sourceText" : {
+		"message" : "Source text"
+	},
+	"translatedText" : {
+		"message" : "Translated text"
+	},
+	"settings" : {
+		"message" : "Settings"
+	},
+	"close" : {
+		"message" : "Close"
+	},
+	"description" : {
+		"message" : "Translate selected text"
+	},
+	"save" : {
+		"message" : "Save"
+	},
+	"add" : {
+		"message" : "Add"
+	},
+	"remove" : {
+		"message" : "Remove"
+	},
+	"noSaveNeeded" : {
+		"message" : "Options are automatically saved"
+	},
+	"noAutomatic" : {
+		"message" : "Selection of text fragments cannot work in extensions gallery"
+	}
+}

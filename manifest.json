@@ -1,0 +1,20 @@
+{
+	"default_locale": "en",
+	"version": "1.1.3",
+	"name": "__MSG_name__",
+	"description": "__MSG_description__",
+	"icons": {
+		"16": "icons/ico16.png",
+		"19": "icons/ico19.png",
+		"32": "icons/ico32.png",
+		"48": "icons/ico48.png",
+		"128": "icons/ico128.png"
+	},
+	"options_page": "options.html",
+	"background_page": "background.html",
+	"browser_action": {
+		"default_icon": "icons/ico19.png",
+		"popup" : "popup.html"
+	},
+	"permissions": ["tabs","<all_urls>","contextMenus"]
+}

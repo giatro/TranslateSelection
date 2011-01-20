@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title class="extTitle"></title>
+	<link rel="stylesheet" href="css/popup.css"/>
+	<link rel="stylesheet" href="css/chroxs.css"/>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/chroxs.js"></script>
+	<script src="js/popup.js"></script>
+</head>
+<body>
+	<div class="card" id="main">
+		<div id="xtitlebar" class="toolbar">
+			<img src="icons/ico16.png" alt=""/>
+			<span class="title extTitle"></span>
+			<a class="button ico notxt icon-x-close" href="#-x">Close</a>
+			<a class="button ico notxt icon-info" href="#info">Info</a>
+			<a class="button ico notxt icon-cog" href="#options">Options</a>
+		</div>
+		<div id="extdescription"></div>
+		<form>
+			<div>
+				<div>
+					<select id="fromto"></select>
+					<a class="button ico notxt icon-cog" href="#options">Options</a>
+				</div>
+				<label for="from">Source text</label>
+				<div id="noAutomatic" class="alert"></div>
+				<textarea id="from"></textarea>
+				<label for="to">Translated text</label>
+				<textarea id="to"></textarea>
+			</div>
+		</form>
+	</div>
+	<div class="card pop" id="options">
+		<div class="toolbar">
+			<span class="title">Options</span>
+			<a class="button ico notxt icon-x-close" href="#main">Close</a>
+		</div>
+		<form></form>
+		<div style="text-align:center;margin:10px"><center><a class="button ico icon-x-close" href="#main">Close</a></center></div>
+	</div>
+	<div class="card pop" id="info">
+		<div style="background:#EEE url(icons/icoBgr.png) 100px -200px no-repeat;height:250px;border:1px solid #D7D7D7; border-radius:3px;padding:10px;">
+			<div><strong style="font-size:200%" class="extTitle"></strong><br/>v.1.1.3<br/>2011.01.20</div>
+		</div>
+		<p>Copyright (c) 2011 Gianluca Troiani - <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>
+		<p>Follow me on twitter: <a href="http://twitter.com/giatro" target="blank">@giatro</a></p>
+		<p>Icons: <a href="http://somerandomdude.com/projects/iconic/" target="blank">iconic</a> by <a href="http://somerandomdude.com/" target="blank">somerandomdude.com</a>
+		<div style="text-align:center;margin:10px"><center><a class="button ico icon-x-close" href="#main">Close</a></center></div>
+	</div>
+</body>
+</html>
