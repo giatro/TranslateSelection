@@ -1,6 +1,10 @@
 google.load("language", "1");
 function start() {
 	setStrings()
+	if(localStorage.getItem('preferred') !== null && localStorage.getItem('version') === null){
+		window.location.hash = 'updates';
+		localStorage.setItem('version','1.1.4');
+	}
 	init();
 	$('#fromto').change(function() {
 		localStorage.setItem('from', $(this).val().split('|')[0])
@@ -57,6 +61,7 @@ var savePrefs = function savePrefs() {
 	}
 	localStorage.setItem('preferred', JSON.stringify(preferred));
 	init();
+	chrome.extension.getBackgroundPage().start();
 };
 function init(){
 	$('.preferredrow, #fromto option').remove();
@@ -118,17 +123,29 @@ var createPreferredRow = function(event, pair) {
 var doTranslation = function doTranslation() {
 	var F = $('#from').val(),
 	    T = '';
-	    fromCode =  $('#fromto').val().split('|')[0],
-	    toCode = $('#fromto').val().split('|')[1] ? $('#fromto').val().split('|')[1] : window.navigator.language;
 	if(F.replace(/^\s+|\s+$/)!=='') $('#to').html(T).addClass('loading');
-	google.language.translate(F,fromCode,toCode,function(result){
-		if(result.status.code == 200){
-			T = result.translation;
-		} else {
-			if(F.replace(/^\s+|\s+$/)!=='') T = "ERROR!\n"+result.error.message
+	$.ajax({
+		type:'POST',
+		url : 'https://ajax.googleapis.com/ajax/services/language/translate',
+		dataType : 'json',
+		data : {
+			q : $('#from').val(),
+			v : '1.0',
+			langpair : $('#fromto').val()
+		},
+		success : function(data){
+			if(data.responseStatus == 200) {
+				T = data.responseData.translatedText;
+			} else {
+				T = 'ERROR: '.data.responseDetails;
+			}
+			$('#to').html(T).removeClass('loading');
+		},
+		error : function (xhr, status, error){
+			T = 'Unexpeceted error occurred!';
+			$('#to').html(T).removeClass('loading');
 		}
-		$('#to').html(T).removeClass('loading');
-	})
+	});
 };
 /*
  * Defaults

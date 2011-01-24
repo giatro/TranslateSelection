@@ -19,6 +19,7 @@ var savePrefs = function savePrefs() {
 	}
 	localStorage.setItem('preferred', JSON.stringify(preferred));
 	init();
+	chrome.extension.getBackgroundPage().start();
 };
 function init(){
 	$('.preferredrow, #fromto option').remove();
