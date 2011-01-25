@@ -1,4 +1,4 @@
-google.load("language", "1");
+﻿google.load("language", "1");
 function contextMenusOnClick(info,tab,opt) {
 	$.ajax({
 		type:'POST',
@@ -40,7 +40,7 @@ function createcontextMenusOption(opt){
 	var optString = '';
 	var L = JSONSwitch(LANGUAGES);
 	optString += opt.split('|')[0] ? L[opt.split('|')[0]] : t('detectLanguage');
-	optString += ' � ';
+	optString += ' » ';
 	optString += opt.split('|')[1] ? L[opt.split('|')[1]] : t('detectLanguage');
 	chrome.contextMenus.create({
 		"title": optString,
