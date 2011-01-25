@@ -1,4 +1,4 @@
-if(!window.TranslateSelectionIsActive){
+﻿if(!window.TranslateSelectionIsActive){
 	chrome.extension.onRequest.addListener(
 		function (req, sender,sendResponse) {
 			if(req.method == 'get') {

@@ -1,4 +1,4 @@
-form {
+﻿form {
 	margin:0;
 }
 #extdescription{
@@ -45,11 +45,6 @@ select {
 	background:#EEE;
 }
 
-#info{
-/*	background:#FFF url(../icons/icoBgr.png) 50% 50% no-repeat fixed;*/
-/*	background-size:70%;*/
-/*	background-alfa:50%;*/
-}
 .preferredrow * {margin:5px 5px 0 0;}
 .preferredrow *:last-child {margin:5px 0 0 0;}
 a {

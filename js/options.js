@@ -1,4 +1,4 @@
-google.load("language", "1");
+﻿google.load("language", "1");
 function start() {
 	setStrings()
 	init();

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ICONS
  */
 .icon-check{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALtJREFUeNpiZIACX19/eSDVAMQBQCwAFf4AxBtA4ps3b3wIEmCEKtYHUgeQFKIDkEYHoKaLjFCTL+BRjKzJgAnqDHyKG6CKQWoamKBuxgUSgHgCED+A8gOY0DzYgKZ4A9RvBlAxARY0EzcgmYauGAxYkNwnAFXgANWEoRiklglqEgzANGFTDLaVCSkUkDUZ4AjWBiZoDDqgacIVcQ+ZQbxbt26+VFfXWAE1XQGIOZAUgsQjgIpvggQAAgwADs0479PTE6gAAAAASUVORK5CYII=), -webkit-gradient(linear, 0% 49%, 0% 50%, from(#DDDDDD), to(#CFCFCF), color-stop(.5,#DDDDDD));}
@@ -65,13 +65,9 @@ body * {
 body .pop {
 	display: none;
 }
-#main {
-	display: block !important;
-}
 body > .current {
 	display: block !important;
 }
-
 body .pop{
 	position:absolute;
 	border:1px solid;
@@ -87,7 +83,7 @@ body .pop{
 	overflow:auto;
 }
 
-*.button.ico{
+.button.ico{
 	border:1px solid #666;
 	border-radius:3px;
 	padding:2px 2px 2px 16px;
@@ -102,7 +98,7 @@ body .pop{
 	box-shadow: 0 0 2px 2px rgba(255,180,0,0);
 	-webkit-transition: border-color 0.3s, -webkit-box-shadow 0.3s ;
 }
-*.button.ico.notxt{
+.button.ico.notxt{
 	height:16px;
 	width:16px;
 	border:1px solid #999;
@@ -114,7 +110,7 @@ body .pop{
 	overflow:hidden;
 	text-indent:32px;
 }
-*:hover.button.ico{
+:hover.button.ico{
 	cursor:pointer;
 	border-color:#FFF;
 	-webkit-box-shadow: 0 0 2px 2px rgba(255,180,0,0.5);
@@ -149,4 +145,7 @@ body .pop{
 .toolbar button.ico {
 	float:right;
 	margin:0 0 0 2px;
+}
+#main {
+	display: block !important;
 }

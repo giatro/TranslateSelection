@@ -1,4 +1,4 @@
-var voidgif = $('<img/>').attr('class','void').attr('src','data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+﻿var voidgif = $('<img/>').attr('class','void').attr('src','data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
 var t = function t (str,op) {
 	return chrome.i18n.getMessage(str,op) === "" ? str : chrome.i18n.getMessage(str);
 }

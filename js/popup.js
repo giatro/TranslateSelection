@@ -1,4 +1,4 @@
-google.load("language", "1");
+﻿google.load("language", "1");
 function start() {
 	setStrings();
 	if(localStorage.getItem('preferred') !== null && (localStorage.getItem('version') === null || localStorage.getItem('version') !== '1.1.5')){
