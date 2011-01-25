@@ -1,6 +1,6 @@
 google.load("language", "1");
 function start() {
-	setStrings()
+	setStrings();
 	if(localStorage.getItem('preferred') !== null && (localStorage.getItem('version') === null || localStorage.getItem('version') !== '1.1.5')){
 		window.location.hash = 'info';
 		localStorage.setItem('version','1.1.5');
