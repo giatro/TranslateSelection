@@ -1,9 +1,9 @@
 google.load("language", "1");
 function start() {
 	setStrings()
-	if(localStorage.getItem('preferred') !== null && localStorage.getItem('version') === null){
+	if(localStorage.getItem('preferred') !== null && (localStorage.getItem('version') === null || localStorage.getItem('version') !== '1.1.4.1')){
 		window.location.hash = 'updates';
-		localStorage.setItem('version','1.1.4');
+		localStorage.setItem('version','1.1.4.1');
 	}
 	init();
 	$('#fromto').change(function() {
@@ -137,7 +137,7 @@ var doTranslation = function doTranslation() {
 			if(data.responseStatus == 200) {
 				T = data.responseData.translatedText;
 			} else {
-				T = 'ERROR: '.data.responseDetails;
+				T = 'ERROR: '+data.responseDetails;
 			}
 			$('#to').html(T).removeClass('loading');
 		},
