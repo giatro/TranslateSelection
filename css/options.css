@@ -1,0 +1,10 @@
+body#options{
+	padding:40px;
+	text-align:center;
+	background:#333;
+}
+body#options #main{
+	display:inline-block !important;
+	text-align:left;
+	border-radius:3px;
+}
