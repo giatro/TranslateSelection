@@ -1,5 +1,11 @@
 ﻿google.load("language", "1");
 function contextMenusOnClick(info,tab,opt) {
+	var balloon;
+	chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+		chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {
+			chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+				chrome.tabs.sendRequest(tab.id,{'method':'prepareBalloon'},function(){
+
 	$.ajax({
 		type:'POST',
 		url : 'https://ajax.googleapis.com/ajax/services/language/translate',
@@ -23,6 +29,15 @@ function contextMenusOnClick(info,tab,opt) {
 			T = 'Unexpeceted error occurred!';
 			alert(T)
 		}
+	});
+
+
+
+
+
+				})
+			});
+		});
 	});
 }
 
