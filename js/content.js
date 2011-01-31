@@ -1,8 +1,6 @@
 ﻿if(!window.TranslateSelectionIsActive){
 	var createBalloon = function createBalloon(message){
 		var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
-		console.log(rect)
-//		window.getSelection().removeAllRanges();
 		var span = document.createElement('span');
 		span.style.backgroundAttachment = 'scroll';
 		span.style.backgroundClip = 'border-box';
@@ -85,11 +83,9 @@
 		span.style.top = (rect.top + rect.height*0 + window.pageYOffset + 8*1) + 'px';
 		span.style.padding = '15px';
 		span.style.borderRadius = '9px';
-//		span.style.marginTop = '-'+(span.clientHeight+15)+'px';
 		span.appendChild(msg);
 		span.appendChild(img);
 		span.appendChild(ximg);
-//		return span;
 		document.body.appendChild(span);
 		return {
 			getBalloon : function() {
@@ -116,28 +112,13 @@
 				}
 			}
 			if(req.method == 'prepareBalloon') {
-//				var range = window.getSelection().getRangeAt(0);
 				balloon = createBalloon('...');
-				console.log('balloon: %o',balloon);
-//				document.body.appendChild(balloon.getBalloon());
-				//balloon.style.marginTop = '-'+(balloon.clientHeight+20)+'px';
 				balloon.placeTop();
 				sendResponse({});
 			}
 			if(req.method == 'getContextMenus') {
 				balloon.setText(req.string);
 				balloon.placeTop();
-//				if(balloon.getBalloon().offsetTop < 0) {
-//					balloon.placeBorder();
-//				}
-//				if(balloon.clientWidth + balloon.offsetLeft > document.documentElement.clientWidth) {
-//					balloon.style.marginLeft = '-'+(balloon.clientWidth + balloon.offsetLeft - document.documentElement.clientWidth)+'px';
-//				}
-//				if(balloon.offsetLeft < 0) {
-//					var delta = balloon.offsetLeft;
-//					balloon.style.marginLeft = 0;
-//					balloon.style.marginLeft = '-'+(balloon.clientWidth + balloon.offsetLeft - document.documentElement.clientWidth + delta)+'px';
-//				}
 				sendResponse({});
 			}
 		}
