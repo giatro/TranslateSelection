@@ -5,36 +5,30 @@ function contextMenusOnClick(info,tab,opt) {
 		chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {
 			chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 				chrome.tabs.sendRequest(tab.id,{'method':'prepareBalloon'},function(){
-
-	$.ajax({
-		type:'POST',
-		url : 'https://ajax.googleapis.com/ajax/services/language/translate',
-		dataType : 'json',
-		data : {
-			q : info.selectionText,
-			v : '1.0',
-			langpair : opt
-		},
-		success : function(data){
-			if(data.responseStatus == 200) {
-				T = data.responseData.translatedText;
-			} else {
-				T = 'ERROR: '+data.responseDetails;
-			}
-			chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
-				chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
-			});
-		},
-		error : function (xhr, status, error){
-			T = 'Unexpeceted error occurred!';
-			alert(T)
-		}
-	});
-
-
-
-
-
+					$.ajax({
+						type:'POST',
+						url : 'https://ajax.googleapis.com/ajax/services/language/translate',
+						dataType : 'json',
+						data : {
+							q : info.selectionText,
+							v : '1.0',
+							langpair : opt
+						},
+						success : function(data){
+							if(data.responseStatus == 200) {
+								T = data.responseData.translatedText;
+							} else {
+								T = 'ERROR: '+data.responseDetails;
+							}
+							chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+								chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
+							});
+						},
+						error : function (xhr, status, error){
+							T = 'Unexpeceted error occurred!';
+							alert(T)
+						}
+					});
 				})
 			});
 		});
