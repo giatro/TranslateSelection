@@ -89,21 +89,23 @@
 		span.appendChild(msg);
 		span.appendChild(img);
 		span.appendChild(ximg);
-		return span;
-//		return {
-//			getBalloon = function() {
-//				return span;
-//			},
-//			placeTop = function(){
-//				span.style.marginTop = '-'+(span.clientHeight+20)+'px';
-//			},
-//			placeBorder = function(){
-//				span.style.marginTop = 0;
-//			},
-//			setText = function(txt){
-//				msg.innerHTML = txt;
-//			}
-//		}
+//		return span;
+		document.body.appendChild(span);
+		return {
+			getBalloon : function() {
+				return span;
+			},
+			placeTop : function(){
+				span.style.marginTop = '-'+(span.clientHeight+20)+'px';
+				if(span.offsetTop < 0) this.placeBorder();
+			},
+			placeBorder : function(){
+				span.style.marginTop = 0;
+			},
+			setText : function(txt){
+				msg.innerHTML = txt;
+			}
+		};
 	}
 	chrome.extension.onRequest.addListener(
 		function (req, sender,sendResponse) {
@@ -114,19 +116,20 @@
 				}
 			}
 			if(req.method == 'prepareBalloon') {
-				var range = window.getSelection().getRangeAt(0);
+//				var range = window.getSelection().getRangeAt(0);
 				balloon = createBalloon('...');
-				document.body.appendChild(balloon);
-				balloon.style.marginTop = '-'+(balloon.clientHeight+20)+'px';
+				console.log('balloon: %o',balloon);
+//				document.body.appendChild(balloon.getBalloon());
+				//balloon.style.marginTop = '-'+(balloon.clientHeight+20)+'px';
+				balloon.placeTop();
 				sendResponse({});
 			}
 			if(req.method == 'getContextMenus') {
-				balloon.getElementsByTagName('span')[0].innerHTML = req.string;
-				balloon.style.marginTop = '-'+(balloon.clientHeight+20)+'px';
-				console.log(balloon.clientHeight)
-				if(balloon.offsetTop < 0) {
-					balloon.style.marginTop = 0;
-				}
+				balloon.setText(req.string);
+				balloon.placeTop();
+//				if(balloon.getBalloon().offsetTop < 0) {
+//					balloon.placeBorder();
+//				}
 //				if(balloon.clientWidth + balloon.offsetLeft > document.documentElement.clientWidth) {
 //					balloon.style.marginLeft = '-'+(balloon.clientWidth + balloon.offsetLeft - document.documentElement.clientWidth)+'px';
 //				}
