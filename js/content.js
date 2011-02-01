@@ -57,8 +57,8 @@
 		loader.style.zIndex = 'auto';
 		msg.appendChild(loader);
 		var img = document.createElement('img');
-//		img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAPCAYAAADd/14OAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHRJREFUeNpi5OLiesZAGGQzEaHoEhCvJ0ZhHYggpHA9EJ8ipPArEDfDOPgUTgTiF4QUPgLimcgCuBR2AvFvQgpPQT3BgE/hXyCuxmYFusIlQHyVkMIPULcxEFI4DaoYK2AB4gdQ9kx8UcQCi0v04EAHAAEGAKutFVTam7ycAAAAAElFTkSuQmCC';
-		img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFJJREFUeNpi5OLiesZAJmACYilyNH79+lWKCUgwkGoASCPMZgYSDZBCdjZWCUIasWnGZwCGOOP///8xVHFzc4OoZ+h+xBba2AIEbhMujSAAEGAAqosagiN+lwwAAAAASUVORK5CYII=';
+		var bottomSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFtJREFUeNpi/P//PwMuwM3N/QxISX39+hWrPBMBjSDwDMjGqoYRZjOagmdY1ErBGDCXYLP5GQ7HPCPk7GcM+MEzXJoJaWRADwOwn5EChxQgxcjFxUWORjAACDAA3JEavEG6L9MAAAAASUVORK5CYII=';
+		var topSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFJJREFUeNpi5OLiesZAJmACYilyNH79+lWKCUgwkGoASCPMZgYSDZBCdjZWCUIasWnGZwCGOOP///8xVHFzc4OoZ+h+xBba2AIEbhMujSAAEGAAqosagiN+lwwAAAAASUVORK5CYII=';
 		var ximg = document.createElement('img');
 		ximg.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGVJREFUeNqckosJwDAIRI8u4ggZ+UbqKBnBWrCpHKFgHwjxEy8mARJ3tzCGTX+ZGTNUIjCkULlzo3b+Kq6bDCn5cIrPjC0f0p2pSlkvFWykWWajJg90+XOk9tC9a20/XPdrXAIMAGD+sgrlLETIAAAAAElFTkSuQmCC';
 		img.style.position = 'absolute';
@@ -78,7 +78,7 @@
 		span.style.background = 'rgba(10,10,10,.9)';
 		span.style.color = '#FFF';
 		span.style.position = 'absolute';
-		span.style.width = (rect.width - 30) + 'px';
+		span.style.width = ((rect.width - 30 > 150) ? rect.width - 30 : 150 ) + 'px';
 		span.style.left = (rect.left) + 'px';
 		span.style.top = (rect.top + rect.height*0 + window.pageYOffset + 8*1) + 'px';
 		span.style.padding = '15px';
@@ -93,9 +93,15 @@
 			},
 			placeTop : function(){
 				span.style.marginTop = '-'+(span.clientHeight+20)+'px';
+				img.src = topSrc;
+				img.style.bottom = '-8px';
+				img.style.top = 'auto';
 				if(span.offsetTop < 0) this.placeBorder();
 			},
 			placeBorder : function(){
+				img.src = bottomSrc;
+				img.style.top = '-8px';
+				img.style.bottom = 'auto';
 				span.style.marginTop = 0;
 			},
 			setText : function(txt){
