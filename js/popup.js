@@ -1,9 +1,9 @@
 ﻿google.load("language", "1");
 function start() {
 	setStrings();
-	if(localStorage.getItem('preferred') !== null && (localStorage.getItem('version') === null || localStorage.getItem('version') !== '1.1.5')){
+	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.6'){
 		window.location.hash = 'info';
-		localStorage.setItem('version','1.1.5');
+		localStorage.setItem('version','1.1.6');
 	}
 	init();
 	$('#fromto').change(function() {
