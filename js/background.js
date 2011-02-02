@@ -41,7 +41,6 @@ var injCallBack = function(S){
 	});
 }
 var getRequestResponseCallback = function getRequestResponseCallback(response) {
-	console.log('response: %o',response);
 };
 
 

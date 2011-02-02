@@ -93,8 +93,16 @@ var createPreferredRow = function(event, pair) {
 	if (typeof event === 'object') {
 		event.preventDefault();
 	}
-	var spf = $('<select name="preffrom"/>').change(savePrefs);
-	var spt = $('<select name="prefto"/>').change(savePrefs);
+	var spf = $('<select name="preffrom"/>').change(function(){
+		savePrefs();
+		$('#fromto').val(spf.val()+'|'+spt.val());
+		doTranslation();
+	});
+	var spt = $('<select name="prefto"/>').change(function(){
+		savePrefs();
+		$('#fromto').val(spf.val()+'|'+spt.val());
+		doTranslation();
+	});
 	$('<option>').attr('value', '').html(t('detectLanguage')).appendTo(spf);
 	for (var currlang in LANGUAGES) {
 		if(LANGUAGES[currlang]) {
@@ -109,10 +117,10 @@ var createPreferredRow = function(event, pair) {
 	}).html(t('add')).attr('title',t('add'));
 	var minusButton = $('<button>').addClass('button ico notxt icon-minus').click(function(event) {
 		event.preventDefault();
-		
 		if ($('div.preferredrow', $(this).closest('div').closest('form')).length > 1) {
 			$(this).closest('div').remove();
-			savePrefs()
+			savePrefs();
+			doTranslation();
 		}
 	}).html(t('remove')).attr('title',t('remove'));
 	$(spf).val(pair.split("|")[0]);
