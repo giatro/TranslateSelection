@@ -21,9 +21,6 @@ function start() {
 		}
 		chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},injCallBack);
 	});
-//	chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
-//		chrome.tabs.sendRequest(tab.id, getRequest, getRequestResponseCallback)
-//	});
 	return;
 };
 var injCallBack = function(){
@@ -49,13 +46,10 @@ function setStrings(){
 	$('a[href="#main"],a[href="#-x"]').attr('title', t('close'));
 	$('a[href="#main"].icon-check').attr('title', t('save')).html(t('save'));
 	$('a[href="#options"]').attr('title', t('settings'));
-//	$('#btClose').attr('title', t('close'));
 }
 
 var savePrefs = function savePrefs() {
 	var preferred = [];
-//	var froms = $('#options select[name=preffrom]');
-//	var tos = $('#options select[name=prefto]');
 	for (var i = 0, max = $('#options select[name=preffrom]').length; i < max; i++) {
 		preferred.push($($('#options select[name=preffrom]').get(i)).val() + '|' + $($('#options select[name=prefto]').get(i)).val());
 	}
@@ -155,9 +149,6 @@ var doTranslation = function doTranslation() {
 		}
 	});
 };
-/*
- * Defaults
- */
 google.setOnLoadCallback(function(){
 	LANGUAGES = google.language.Languages;
 	start();
