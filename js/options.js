@@ -1,5 +1,4 @@
-﻿google.load("language", "1");
-function start() {
+﻿function start() {
 	setStrings()
 	init();
 };
@@ -76,24 +75,16 @@ var createPreferredRow = function(event, pair) {
 	$('<div>').addClass('preferredrow').append(spf).append(spt).append(plusButton).append(minusButton).appendTo($('form'));
 }
 
-var doTranslation = function doTranslation() {
-	var F = $('#from').val(),
-	    T = '';
-	    fromCode =  $('#fromto').val().split('|')[0],
-	    toCode = $('#fromto').val().split('|')[1] ? $('#fromto').val().split('|')[1] : window.navigator.language;
-	google.language.translate(F,fromCode,toCode,function(result){
-		if(result.status.code == 200){
-			T = result.translation;
-		} else {
-			if(F.replace(/^\s+|\s+$/)!=='') T = "ERROR!\n"+result.error.message
+$(document).ready(function(){
+	LANGUAGES = {};
+	LOCALE = "";
+	chrome.i18n.getAcceptLanguages( function(L) {
+		LOCALE = L[0];
+		currentLanguages = Microsoft.Translator.GetLanguages();
+		languageNames = Microsoft.Translator.getLanguageNames(LOCALE);
+		for(var i = 0; i < currentLanguages.length; i++) {
+			LANGUAGES[languageNames[i]] = currentLanguages[i];
 		}
-		$('#to').html(T);
-	})
-};
-/*
- * Defaults
- */
-google.setOnLoadCallback(function(){
-	LANGUAGES = google.language.Languages;
-	start();
+		start();
+	} );
 });

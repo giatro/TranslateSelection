@@ -1,10 +1,5 @@
-﻿google.load("language", "1");
-function start() {
+﻿function start() {
 	setStrings();
-	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.6'){
-		window.location.hash = 'info';
-		localStorage.setItem('version','1.1.6');
-	}
 	init();
 	$('#fromto').change(function() {
 		localStorage.setItem('from', $(this).val().split('|')[0])
@@ -123,33 +118,22 @@ var createPreferredRow = function(event, pair) {
 }
 
 var doTranslation = function doTranslation() {
-	var F = $('#from').val(),
-	    T = '';
-	if(F.replace(/^\s+|\s+$/)!=='') $('#to').html(T).addClass('loading');
-	$.ajax({
-		type:'POST',
-		url : 'https://ajax.googleapis.com/ajax/services/language/translate',
-		dataType : 'json',
-		data : {
-			q : $('#from').val(),
-			v : '1.0',
-			langpair : $('#fromto').val()
-		},
-		success : function(data){
-			if(data.responseStatus == 200) {
-				T = data.responseData.translatedText;
-			} else {
-				T = 'ERROR: '+data.responseDetails;
-			}
-			$('#to').html(T).removeClass('loading');
-		},
-		error : function (xhr, status, error){
-			T = 'Unexpeceted error occurred!';
-			$('#to').html(T).removeClass('loading');
-		}
+	var F = $('#from').val();
+	if(F.replace(/^\s+|\s+$/)!=='') $('#to').html('').addClass('loading');
+	Microsoft.Translator.translate(F,$('#fromto').val().split("|")[0],$('#fromto').val().split("|")[1],function(T) { 
+		$('#to').html(T).removeClass('loading');
 	});
 };
-google.setOnLoadCallback(function(){
-	LANGUAGES = google.language.Languages;
-	start();
+$(document).ready(function(){
+	LANGUAGES = {};
+	LOCALE = "";
+	chrome.i18n.getAcceptLanguages( function(L) {
+		LOCALE = L[0];
+		currentLanguages = Microsoft.Translator.GetLanguages();
+		languageNames = Microsoft.Translator.getLanguageNames(LOCALE);
+		for(var i = 0; i < currentLanguages.length; i++) {
+			LANGUAGES[languageNames[i]] = currentLanguages[i];
+		}
+		start();
+	} );
 });

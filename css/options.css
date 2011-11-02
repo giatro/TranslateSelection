@@ -8,3 +8,6 @@ body#options #main{
 	text-align:left;
 	border-radius:3px;
 }
+body#options .alert{
+	margin:5px 0 0 0;
+}

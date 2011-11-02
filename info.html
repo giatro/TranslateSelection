@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>About Translate selection</title>
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/popup.css"/>
+	<link rel="stylesheet" href="css/options.css"/>
+	<link rel="stylesheet" href="css/chroxs.css"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/chroxs.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.extTitle').html(t('name'));
+		});
+	</script>
+</head>
+<body id="info">
+	<div class="card" id="main">
+		<div class="toolbar">
+			<img src="icons/ico16.png" alt=""/>
+			<span class="title">About Translate selection</span>
+		</div>
+		<div id="infodata" style="margin:10px 0 0 0">
+			<div id="versionInfo">
+				<div><strong class="extTitle"></strong><br/>v.1.1.7<br/>2011.11.02</div>
+			</div>
+		<div id="updatesInfo" style="height:auto">
+			<dl>
+				<dt>What's new in version 1.1.7</dt>
+				<dd>
+					<ul>
+						<li>Replaced Google Translate API (deprecated) with Microsoft Translator's AJAX interface, to fix the "Suspected Terms of Service Abuse" error</li>
+						<li>Improvements on right-click translation: pop-up wait animation and better positioning.</li>
+					</ul>
+				</dd>
+				<dt>What's new in version 1.1.5</dt>
+				<dd>
+					<ul>
+						<li>Bug fix: removed bug on showing error messages from Google API.</li>
+					</ul>
+				</dd>
+				<dt>What's new in version 1.1.4</dt>
+				<dd>
+					<ul>
+						<li>Now you can translate using context menus: try right-click on selection!</li>
+						<li>New icon.</li>
+						<li>Bug fix: now you can translate very long text fragments.</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+		<p>Copyright (c) 2011 Gianluca Troiani - <a href="http://opensource.org/licenses/mit-license.php">MIT License</a></p>
+		<p>Follow me on twitter: <a href="http://twitter.com/giatro" target="blank">@giatro</a></p>
+		<p>Icons: <a href="http://somerandomdude.com/projects/iconic/" target="blank">iconic</a> by <a href="http://somerandomdude.com/" target="blank">somerandomdude.com</a>
+	</div>
+</body>
+</html>

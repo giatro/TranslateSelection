@@ -1,33 +1,14 @@
-﻿google.load("language", "1");
-function contextMenusOnClick(info,tab,opt) {
+﻿function contextMenusOnClick(info,tab,opt) {
 	var balloon;
 	chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 		chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {
 			chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 				chrome.tabs.sendRequest(tab.id,{'method':'prepareBalloon'},function(){
-					$.ajax({
-						type:'POST',
-						url : 'https://ajax.googleapis.com/ajax/services/language/translate',
-						dataType : 'json',
-						data : {
-							q : info.selectionText,
-							v : '1.0',
-							langpair : opt
-						},
-						success : function(data){
-							if(data.responseStatus == 200) {
-								T = data.responseData.translatedText;
-							} else {
-								T = 'ERROR: '+data.responseDetails;
-							}
-							chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
-								chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
-							});
-						},
-						error : function (xhr, status, error){
-							T = 'Unexpeceted error occurred!';
-							alert(T)
-						}
+					var F = info.selectionText;
+					Microsoft.Translator.translate(F,opt.split("|")[0],opt.split("|")[1],function(T) { 
+						chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+							chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
+						});
 					});
 				})
 			});
@@ -65,6 +46,21 @@ function createcontextMenusOption(opt){
 }
 
 function start() {
+	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.7'){
+		window.open('info.html');
+		localStorage.setItem('version','1.1.7');
+	}
+	if (localStorage.getItem('from') === null) {
+		localStorage.setItem('from', '');
+	}
+	
+	if (localStorage.getItem('to') === null) {
+		localStorage.setItem('to', '');
+	}
+	if (localStorage.getItem('preferred') === null) {
+		localStorage.setItem('preferred', JSON.stringify(["|"+window.navigator.language]));
+		window.open('options.html');
+	}
 	var preferred = JSON.parse(localStorage.getItem('preferred'));
 	chrome.contextMenus.removeAll();
 	for (var i = 0, max = preferred.length; i < max; i++) {
@@ -80,7 +76,16 @@ function start() {
 }
 
 
-google.setOnLoadCallback(function(){
-	LANGUAGES = google.language.Languages;
-	start();
+$(document).ready(function(){
+	LANGUAGES = {};
+	LOCALE = "";
+	chrome.i18n.getAcceptLanguages( function(L) {
+		LOCALE = L[0];
+		currentLanguages = Microsoft.Translator.GetLanguages();
+		languageNames = Microsoft.Translator.getLanguageNames(LOCALE);
+		for(var i = 0; i < currentLanguages.length; i++) {
+			LANGUAGES[languageNames[i]] = currentLanguages[i];
+		}
+		start();
+	} );
 });
