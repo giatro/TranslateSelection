@@ -3,6 +3,8 @@ Translate selection
 
 Let you select and translate text fragments.
 
+Install: go to http://goo.gl/3lWSj with Google Chrome.
+
 Softpedia review available: http://goo.gl/Lnaie
 
 Security
