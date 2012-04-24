@@ -46,8 +46,6 @@ var getRequestResponseCallback = function getRequestResponseCallback(response) {
 
 function createcontextMenusOption(opt){
 	var optString = '';
-	alert(opt);
-	console.log(opt);
 	var L = JSONSwitch(LANGUAGES);
 	optString += opt.split('|')[0] ? L[opt.split('|')[0]] : t('detectLanguage');
 	optString += ' » ';
