@@ -1,14 +1,30 @@
-﻿function contextMenusOnClick(info,tab,opt) {
+function contextMenusOnClick(info,tab,opt) {
 	var balloon;
 	chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 		chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {
 			chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 				chrome.tabs.sendRequest(tab.id,{'method':'prepareBalloon'},function(){
 					var F = info.selectionText;
-					Microsoft.Translator.translate(F,opt.split("|")[0],opt.split("|")[1],function(T) { 
-						chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
-							chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
-						});
+					$.ajax({
+						url : 'http://api.microsofttranslator.com/V2/Ajax.svc/Translate',
+						data : {
+							'appId'       : '76518BFCEBBF18E107C7073FBD4A735001B56BB1',
+							'text'        : F,
+							'from'        : opt.split("|")[0],
+							'to'          : opt.split("|")[1],
+							'contentType' : 'text/plain'
+						},
+						'success' : function(T)  {
+							chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+								chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
+							});
+						},
+						'error' : function(jqXHR, textStatus, errorThrown) {
+							var T = 'ERROR! ' + textStatus;
+							chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
+								chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
+							});
+						}
 					});
 				})
 			});
@@ -30,6 +46,8 @@ var getRequestResponseCallback = function getRequestResponseCallback(response) {
 
 function createcontextMenusOption(opt){
 	var optString = '';
+	alert(opt);
+	console.log(opt);
 	var L = JSONSwitch(LANGUAGES);
 	optString += opt.split('|')[0] ? L[opt.split('|')[0]] : t('detectLanguage');
 	optString += ' » ';
@@ -46,9 +64,12 @@ function createcontextMenusOption(opt){
 }
 
 function start() {
-	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.7'){
+	if(localStorage.getItem('version') === null) {
+		localStorage.setItem('version','0');
+	}
+	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.8'){
 		window.open('info.html');
-		localStorage.setItem('version','1.1.7');
+		localStorage.setItem('version','1.1.8');
 	}
 	if (localStorage.getItem('from') === null) {
 		localStorage.setItem('from', '');
@@ -66,13 +87,6 @@ function start() {
 	for (var i = 0, max = preferred.length; i < max; i++) {
 		createcontextMenusOption(preferred[i]);
 	}
-	chrome.contextMenus.create({
-		"title": t('settings'),
-		"contexts":['selection'],
-		"onclick": function(){
-			window.open('options.html');
-		}
-	});
 }
 
 

@@ -120,8 +120,20 @@ var createPreferredRow = function(event, pair) {
 var doTranslation = function doTranslation() {
 	var F = $('#from').val();
 	if(F.replace(/^\s+|\s+$/)!=='') $('#to').html('').addClass('loading');
-	Microsoft.Translator.translate(F,$('#fromto').val().split("|")[0],$('#fromto').val().split("|")[1],function(T) { 
-		$('#to').html(T).removeClass('loading');
+	$.ajax({
+		url : 'http://api.microsofttranslator.com/V2/Ajax.svc/Translate',
+		data : {
+			'text'        : F,
+			'from'        : $('#fromto').val().split("|")[0],
+			'to'          : $('#fromto').val().split("|")[1],
+			'contentType' : 'text/plain'
+		},
+		'success' : function(data)  {
+			$('#to').html(data).removeClass('loading');
+		},
+		'error' : function(jqXHR, textStatus, errorThrown)  {
+			$('#to').html(textStatus).removeClass('loading');
+		}
 	});
 };
 $(document).ready(function(){

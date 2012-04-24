@@ -29,6 +29,12 @@ Features
 
 Note: Automatic selection of the text can not work in the extensions gallery (for example, this page), the extensions gallery cannot be scripted! -- Google said that :-(
 
+Version 1.1.8
+-------------
+
+* Fix: new API version 
+* Russian locale, THANKS TO [apaxuc](http://github.com/apaxuc)
+
 Version 1.1.7
 -------------
 

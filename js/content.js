@@ -1,4 +1,4 @@
-﻿if(!window.TranslateSelectionIsActive){
+if(!window.TranslateSelectionIsActive){
 	var createBalloon = function createBalloon(message){
 		var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
 		var span = document.createElement('span');
