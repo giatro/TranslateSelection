@@ -1,0 +1,44 @@
+﻿{
+	"name" : {
+		"message" : "Перевести"
+	},
+	"detectLanguage" : {
+		"message" : "Определить язык"
+	},
+	"fromLang" : {
+		"message" : "с"
+	},
+	"toLang" : {
+		"message" : "на"
+	},
+	"sourceText" : {
+		"message" : "Оригинальный текст"
+	},
+	"translatedText" : {
+		"message" : "Переведённый текст"
+	},
+	"settings" : {
+		"message" : "Настройки"
+	},
+	"close" : {
+		"message" : "Закрыть"
+	},
+	"description" : {
+		"message" : "Перевод выделеного текста"
+	},
+	"save" : {
+		"message" : "Сохранить"
+	},
+	"add" : {
+		"message" : "Добавить"
+	},
+	"remove" : {
+		"message" : "Удалить"
+	},
+	"noSaveNeeded" : {
+		"message" : "Настройки сохраняются автоматически"
+	},
+	"noAutomatic" : {
+		"message" : "Выделение фрагмента текста не работает в галереи расширений"
+	}
+}
