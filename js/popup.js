@@ -123,6 +123,7 @@ var doTranslation = function doTranslation() {
 	$.ajax({
 		url : 'http://api.microsofttranslator.com/V2/Ajax.svc/Translate',
 		data : {
+			'appId'       : '76518BFCEBBF18E107C7073FBD4A735001B56BB1',
 			'text'        : F,
 			'from'        : $('#fromto').val().split("|")[0],
 			'to'          : $('#fromto').val().split("|")[1],

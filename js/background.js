@@ -65,9 +65,9 @@ function start() {
 	if(localStorage.getItem('version') === null) {
 		localStorage.setItem('version','0');
 	}
-	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.8'){
+	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.8.2'){
 		window.open('info.html');
-		localStorage.setItem('version','1.1.8');
+		localStorage.setItem('version','1.1.8.2');
 	}
 	if (localStorage.getItem('from') === null) {
 		localStorage.setItem('from', '');
