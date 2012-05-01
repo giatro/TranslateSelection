@@ -15,6 +15,7 @@ function contextMenusOnClick(info,tab,opt) {
 							'contentType' : 'text/plain'
 						},
 						'success' : function(T)  {
+							T = T.replace(/^"|"$/gi,'');
 							chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 								chrome.tabs.executeScript(tab.id,{file:'js/content.js',allFrames:true},function() {injCallBack(T)});
 							});
@@ -65,9 +66,9 @@ function start() {
 	if(localStorage.getItem('version') === null) {
 		localStorage.setItem('version','0');
 	}
-	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.8.2'){
+	if(localStorage.getItem('version') !== null && localStorage.getItem('version') !== '1.1.8.3'){
 		window.open('info.html');
-		localStorage.setItem('version','1.1.8.2');
+		localStorage.setItem('version','1.1.8.3');
 	}
 	if (localStorage.getItem('from') === null) {
 		localStorage.setItem('from', '');

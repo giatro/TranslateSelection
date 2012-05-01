@@ -9,7 +9,6 @@
 	
 	$('#from').keyup(doTranslation).mouseup(doTranslation);
 	
-	
 	chrome.tabs.getSelected(null, function(tab) { // get selected string in current tab
 		if(/^https:\/\/chrome\.google\.com\/extensions[?/]?/.test(tab.url)) {
 			$('#noAutomatic').show();
@@ -130,7 +129,8 @@ var doTranslation = function doTranslation() {
 			'contentType' : 'text/plain'
 		},
 		'success' : function(data)  {
-			$('#to').html(data).removeClass('loading');
+			data = data.replace(/^"|"$/gi,'').replace(/\\u([0-9A-F]{2,4})/gi,"&#x$1;");
+			$('#to').html(data).removeClass('loading').css({'white-space':'pre-wrap'});
 		},
 		'error' : function(jqXHR, textStatus, errorThrown)  {
 			$('#to').html(textStatus).removeClass('loading');
