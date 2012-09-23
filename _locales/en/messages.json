@@ -6,10 +6,10 @@
 		"message" : "Detect Language"
 	},
 	"fromLang" : {
-		"message" : "da"
+		"message" : "from"
 	},
 	"toLang" : {
-		"message" : "in"
+		"message" : "into"
 	},
 	"sourceText" : {
 		"message" : "Source text"
